@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+    .font{
+            color:Dodgerblue;
+            font-size:30px;
+            /* padding:5%; */
+        }
+        .margin{
+            margin-left:10%;
+        }
+        .col{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 3rem;
+            color:black;
+        }
+        .color{
+            color:dodgerblue;
+        }
+        .coli{
+            font-size:6rem;
+        }
+        hr{
+            position:relative;
+            margin-top:-1rem;
+        }  
+        .cap{
+            color:white;
+        } 
+        .input{
+            background: #BED0E9;
+        }
+        .modal-body{
+            padding:5%;
+        }
+        .butn{
+            background: #f0475f;
+            color: #fff;
+        }
+        .content{
+            text-align: center;
+        }
+        .nav-link{
+            color:black;
+        }
+        .position{
+            position: absolute;
+            top: 8px;
+            left: 130px;
+            font-size: 18px;
+        }
+        .style{
+            font-size:1.3rem;
+            margin-left:10px;
+            letter-spacing: 4px;
+        }
+        .modal-image{
+            margin-top:15%;
+        }
+        .hovereffect {
+        width:100%;
+        height:100%;
+        float:left;
+        overflow:hidden;
+        position:relative;
+        text-align:center;
+        cursor:default;
+        }
+
+        .hovereffect .overlay {
+        width:100%;
+        height:100%;
+        position:absolute;
+        overflow:hidden;
+        top:0;
+        left:0;
+        opacity:0;
+        background-color:rgba(0,0,0,0.5);
+        -webkit-transition:all .4s ease-in-out;
+        transition:all .4s ease-in-out
+        }
+
+        .hovereffect img {
+        display:block;
+        position:relative;
+        -webkit-transition:all .4s linear;
+        transition:all .4s linear;
+        }
+
+        .hovereffect h2 {
+        text-transform:uppercase;
+        color:#fff;
+        text-align:center;
+        position:relative;
+        font-size:17px;
+        background:rgba(0,0,0,0.6);
+        -webkit-transform:translatey(-100px);
+        -ms-transform:translatey(-100px);
+        transform:translatey(-100px);
+        -webkit-transition:all .2s ease-in-out;
+        transition:all .2s ease-in-out;
+        padding:10px;
+        }
+
+        .hovereffect a.info {
+        text-decoration:none;
+        display:inline-block;
+        text-transform:uppercase;
+        color:#fff;
+        border:1px solid #fff;
+        background-color:transparent;
+        opacity:0;
+        filter:alpha(opacity=0);
+        -webkit-transition:all .2s ease-in-out;
+        transition:all .2s ease-in-out;
+        margin:40% 0 0;
+        padding:7px 14px;
+        }
+
+        .hovereffect a.info:hover {
+        box-shadow:0 0 5px #fff;
+        }
+
+        .hovereffect:hover img {
+        -ms-transform:scale(1.2);
+        -webkit-transform:scale(1.2);
+        transform:scale(1.2);
+        }
+
+        .hovereffect:hover .overlay {
+        opacity:1;
+        filter:alpha(opacity=100);
+        }
+
+        .hovereffect:hover h2,.hovereffect:hover a.info {
+        opacity:1;
+        filter:alpha(opacity=100);
+        -ms-transform:translatey(0);
+        -webkit-transform:translatey(0);
+        transform:translatey(0);
+        }
+        
+        .hovereffect:hover a.info {
+        -webkit-transition-delay:.2s;
+        transition-delay:.2s;
+        }
+        .footer{
+            /* background-color: #BED0E9; */
+            padding:2%;
+            text-align: center;
+        }
+        .nav-link:hover{
+            border-bottom: 3px solid #f0475f;
+        }
+        /* a.nav-link:active{
+            border-bottom: 3px solid #f0475f;
+        } */
+        
+        .nav-link:focus{
+            text-decoration: none;
+            border-bottom: 3px solid #f0475f;
+        }
+        .banner{
+            background-image: url("../../static/inner_ban.jpg");
+            background-position-x: center;
+            background-position-y: center;
+            background-size: cover;
+            background-attachment: initial;
+            background-origin: initial;
+            background-clip: initial;
+            background-color: initial;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            -ms-background-size: cover;
+            background-size: cover;
+            min-height: 260px;
+        }
+        .side-bar {
+            background: #eee;
+        }
+        h3.shopf-sear-headits-sear-head {
+            font-size: 16px;
+            color: #000;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: capitalize;
+            background: #fff;
+            padding: 6px 10px;
+        }
+        .left-side {
+            margin-top: 18px;
+        }
+        .padding{
+            padding-left:2%;
+        }
+        .image{
+            height:300px;
+            padding:5%;
+        }
+        .hub-cart {
+            font-size: 0.7em;
+            letter-spacing: 1px;
+            word-spacing: 2px;
+            padding: 10px 25px;
+            font-weight: 600;
+            text-transform: uppercase !important;
+            color: #000;
+            background: #d8e9fa;
+            outline: none;
+            border: none;
+            cursor: pointer;
+        }
+        .btn {
+            display: inline-block;
+        }
+        .product{
+            margin-left:6%;
+            margin-top:3%;
+            margin-bottom:3%;
+        }
+        .top_hub_cart {
+            background: #d8e9fa;
+            position: relative;
+        }
+        .buton{
+            background-color: #d8e9fa;
+            color:Dodgerblue;
+            font-weight: bold;
+            /* padding:10%; */
+        }
+        .cart_item{
+            color: white;
+            font-size: 15px;
+            position: absolute;
+            margin-left: -1px;
+            margin-top: -20px;
+            background:#f0475f;
+            padding:4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <a class="navbar-brand" href="/"><p class="col">F<span class="color">S</span></p></a>
+            <span> 
+                <form class="form-inline" action="search" method='POST'>
+                        {%csrf_token%}
+                    <select class="form-control input-lg mr-2" name="category">
+                        <option value="all">Search our store</option>
+                        <optgroup label="Mens">
+                            <option value="1">T-Shirts</option>
+                            <option value="2">Shirts</option>
+                            <option value="3">Trousers</option>
+                            <option value="4">Coats</option>
+                            <option value="5">Blazers</option>
+                            <option value="6">Suits</option>
+                            <option value="7">Shoes</option>
+                            <option value="8">Watches</option>
+                            <option value="9">Caps</option>
+                            <option value="10">Jackets</option>
+                            <option value="11">Sox</option>
+                            <option value="12">Gloves</option>
+                        </optgroup>
+                        <optgroup label="Womens">
+                            <option value="22">T-Shirts</option>
+                            <option value="20">Skirts</option>
+                            <option value="15">Dresses</option>
+                            <option value="18">Jeans</option>
+                            <option value="23">Tunics</option>
+                            <option value="13">Blazers</option>
+                            <option value="19">Shoes</option>
+                            <option value="24">Watches</option>
+                            <option value="14">Caps</option>
+                            <option value="17">Jackets</option>
+                            <option value="21">Sox</option>
+                            <option value="16">Gloves</option>
+                        </optgroup>
+                        <optgroup label="Girls">
+                            <option value="Dresses">Dresses</option>
+                            <option value="31">T-shirts</option>
+                            <option value="32">Tunics</option>
+                            <option value="33">Skirts</option>
+                            <option value="34">Jeans</option>
+                            <option value="35">Midi</option>
+                            <option value="36">Dresses</option>
+                        </optgroup>
+                        <optgroup label="Boys">
+                            <option value="25">T-Shirts</option>
+                            <option value="26">Shoes</option>
+                            <option value="27">Shirts</option>
+                            <option value="28">Jackets</option>
+                            <option value="29">Blazers</option>
+                            <option value="30">Suits</option>
+                        </optgroup>
+                    </select>
+                    <button class="btn btn-outline-secondary mr-4" type="submit">Search</button>
+                    {% if user == '' %}
+                    <a href="#login" data-toggle="modal"><i class="far fa-user font mr-3"></i></a>
+                    {% else %}
+                    <a href="/logout" class="btn buton px-2 py-2 rounded-circle mr-3">
+                        {{first|capfirst }} 
+                        <span style="color:#f0475f">
+                            {{last|capfirst}}
+                        </span>
+                    </a>
+                    {% endif %}
+                    <a href="/cart" class="btn top_hub_cart mt-1 mr-2"><i class="fas fa-shopping-bag font">
+                            {% if length > 0%}
+                        <span class="cart_item rounded-circle">{{length}}</span>
+                        {% endif %}
+                    </i></a>
+                </form>
+            </span>
+        </nav>
+        <hr>
+        <div class="modal fade bd-example-modal-lg" id="login" tabindex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" style="width:700px;" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginTitle">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="login" method='POST'>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm">
+                                <img src="../../static/ecom.png" class="img-fluid">
+                            </div>
+                            <div class="col-sm">
+                            {%csrf_token%}
+                            {% if messages %}
+                            {% for message in messages %}
+                            <span style="color:red;">*{{ message }}</span><br>
+                            {% endfor %}
+                            {% endif %}
+                            <br>
+                                <div class="form-row"> 
+                                    <div class="form-group col-md">
+                                        <label>Email</label>
+                                        <input type="email" name="emaill" class="form-control input" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md">
+                                        <label>Password</label>
+                                        <input type="password" name="passwordl" class="form-control input" required>
+                                    </div>
+                                </div> 
+                                <div class="content">
+                                    <a data-toggle="modal" href="#register">Not a member yet? Register Now</a>
+                                </div>
+                                <br>
+                                <div class="form-row">
+                                    <div class="form-group col-md">
+                                        <button type="submit" class="form-control btn butn">Login</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                </form> 
+                {% if displayl == '1' %}
+                <script>
+                    $(document).ready(function() {
+                        $("#login").modal("show");
+                    });
+                </script>
+                {%endif%}
+                
+                </div>
+            </div>
+        </div>
+        <div class="modal fade bd-example-modal-lg" id="register" tabindex="-1" role="dialog" aria-labelledby="registertitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registertitle">Register Now</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="register" method='POST'>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm">
+                                <img src="../../static/ecom.png" class="img-fluid modal-image">
+                            </div>
+                            <div class="col-sm">
+                                {%csrf_token%}
+                                {% if messages %}
+                                {% for message in messages %}
+                                <span style="color:red;">*{{ message }}</span><br>
+                                {% endfor %}
+                                {% endif %}
+                                <br>
+                                <div class="form-row">
+                                    <div class="form-group col-md">
+                                    <label>First Name</label>
+                                    <input type="text" class="form-control input" name="first_name" required>
+                                    </div>
+                                    <div class="form-group col-md">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control input" name="last_name" required>
+                                    </div>
+                                </div>
+                                <div class="form-row"> 
+                                    <div class="form-group col-md">
+                                        <label>Email</label>
+                                        <input type="email" class="form-control input" name="email" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control input" name="password" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md">
+                                        <label>Confirm Password</label>
+                                        <input type="password" class="form-control input" name= "cpassword" required>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-row">
+                                    <div class="form-group col-md">
+                                        <button type="submit" class="form-control btn butn">Register</button>
+                                    </div>
+                                </div>    
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {% if displayr == '1' %}
+                <script>
+                    $(document).ready(function() {
+                        $("#register").modal("show");
+                    });
+                </script>
+                {%endif%}
+                </div>
+            </div>
+        </div>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link active" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="/men">Men's</a>
+                <div class="dropdown-menu" style="width:50%;margin-left:25%;margin-right:25%;">
+                    <div class="px-5 container">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-lg-3">
+                                <a class="dropdown-item" href="/men?cat=1">T-Shirts</a>
+                                <a class="dropdown-item" href="/men?cat=2">Shirts</a>
+                                <a class="dropdown-item" href="/men?cat=3">Trousers</a>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-lg-3">
+                                <a class="dropdown-item" href="/men?cat=4">Coats</a>
+                                <a class="dropdown-item" href="/men?cat=5">Blazers</a>
+                                <a class="dropdown-item" href="/men?cat=6">Suits</a>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-lg-3">
+                                <a class="dropdown-item" href="/men?cat=7">Shoes</a>
+                                <a class="dropdown-item" href="/men?cat=8">Watches</a>
+                                <a class="dropdown-item" href="/men?cat=9">Caps</a>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-lg-3">
+                                <a class="dropdown-item" href="/men?cat=10">Jackets</a>
+                                <a class="dropdown-item" href="/men?cat=11">Sox</a>
+                                <a class="dropdown-item" href="/men?cat=12">Gloves</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="/women">Women's</a>
+                <div class="dropdown-menu" style="width:50%;margin-left:25%;margin-right:25%">
+                    <div class="px-5 container">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-lg-3">
+                                <a class="dropdown-item" href="/women?cat=22">T-Shirts</a>
+                                <a class="dropdown-item" href="/women?cat=20">Skirts</a>
+                                <a class="dropdown-item" href="/women?cat=15">Dresses</a>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-lg-3">
+                                <a class="dropdown-item" href="/women?cat=18">Jeans</a>
+                                <a class="dropdown-item" href="/women?cat=23">Tunics</a>
+                                <a class="dropdown-item" href="/women?cat=13">Blazers</a>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-lg-3">
+                                <a class="dropdown-item" href="/women?cat=19">Shoes</a>
+                                <a class="dropdown-item" href="/women?cat=24">Watches</a>
+                                <a class="dropdown-item" href="/women?cat=14">Caps</a>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-lg-3">
+                                <a class="dropdown-item" href="/women?cat=17">Jackets</a>
+                                <a class="dropdown-item" href="/women?cat=21">Sox</a>
+                                <a class="dropdown-item" href="/women?cat=16">Gloves</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="/kid">Kid's</a>
+                <div class="dropdown-menu" style="width:50%;margin-left:25%;margin-right:25%;">
+                    <div class="px-5 container">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-lg-3">
+                                <span class="bg-light" style="font-weight:bold">Boy's Clothing</span>
+                                <a class="dropdown-item" href="/kid?cat=25">T-Shirts</a>
+                                <a class="dropdown-item" href="/kid?cat=26">Shoes</a>
+                                <a class="dropdown-item" href="/kid?cat=27">Shirts</a>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-lg-3">
+                                <a class="dropdown-item" href="/kid?cat=28">Jackets</a>
+                                <a class="dropdown-item" href="/kid?cat=29">Blazers</a>
+                                <a class="dropdown-item" href="/kid?cat=30">Suits</a>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-lg-3">
+                                <span class="bg-light"style="font-weight:bold">Girl's Clothing</span>
+                                <a class="dropdown-item" href="/kid?cat=31">T-Shirts</a>
+                                <a class="dropdown-item" href="/kid?cat=32">Tunics</a>
+                                <a class="dropdown-item" href="/kid?cat=33">Skirts</a>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-lg-3">
+                                <a class="dropdown-item" href="/kid?cat=34">Jeans</a>
+                                <a class="dropdown-item" href="/kid?cat=35">Midi</a>
+                                <a class="dropdown-item" href="/kid?cat=36">Dresses</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="banner pt-sm-5 pt-3">
+        <h4 class="col cap" style="text-align:center;"><span class="coli">F</span>ashion <span class="coli">S</span>quare</h4>
+    </div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Men's Clothing</li>
+        </ol>
+    </nav>
+    <div class="row my-lg-5 mb-5 padding">
+        <div class="side-bar col-lg-2">
+            <!--preference -->
+            <div class="left-side">
+                <h3 class="shopf-sear-headits-sear-head">
+                    Categories
+                </h3>
+                {%for c in categories%} 
+                <a href="?cat={{c.id}}"><div>{{c.name|title}}</div></a>
+                {%endfor%} 
+            </div>
+            <br>
+        </div> 
+ 
+        <div class="col-lg-10">
+            <div class="row">
+                {%for prod in products%}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="card mb-3">
+                        <div class="hovereffect">
+                            <img class="img-responsive img-fluid image" src="{% static prod.link %}" alt="Card image">
+                            <div class="overlay">
+                                <h2>{{prod.name|title}}</h2>
+                                <a class="info" href="/showProduct?id={{prod.id}}">Quick View</a>
+                            </div>
+                        </div>
+                        
+                        <div class="product">
+                            {{prod.description|title}}
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <b>${{prod.price}}.00</b>
+                                </div>
+                                <div class="col-sm-5">
+
+                                    <!-- local variable value is '0' -->
+                                    {% for k, v in prodlist.items %}
+                                        {% if k == prod.id|stringformat:"i" %}
+
+                                    <!-- i want to change local variable value to '1'     -->
+                                    <!-- <a href="/cart" id="shopping-basket">
+                                        <span class="hub-cart btn" style="background: lightgreen;">
+                                            <i class="fa fa-shopping-basket"></i>
+                                        </span>
+                                    </a> -->
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    <!-- if local variable value is '0', the below code will execute -->
+                                    <a href="/add?id={{prod.id}}&loc=men&cat={{prod.category_id}}">
+                                        <span class="hub-cart btn">
+                                            <i class="fa fa-cart-plus"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-sm-3">
+                    <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                            <img class="card-img" src="{% static prod.link %}" alt="Card image">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p class="card-text">Last updated 3 mins ago</p>
+                        </div>
+                        
+                            <div class="card-body text-secondary">
+                            <h5 class="card-title"><img src="{% static prod.link %}" class="img-fluid"></h5>
+                        </div>
+                    </div>
+                </div> -->
+                {%endfor%}
+            </div>
+        </div>  
+
+    </div>
+</body>
+</html>

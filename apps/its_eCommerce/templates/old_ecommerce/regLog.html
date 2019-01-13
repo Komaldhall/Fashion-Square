@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <title>Main</title>
+    <style>
+        .error{
+            color:red;
+            font-style: italic;
+            /* text-align: center;
+            position: relative; */
+            font-weight: bold
+            
+        }
+       
+        .head{
+            padding:10px;
+            color:rgb(224, 91, 39);
+        }
+        .main{
+            font-size: 35px;
+            text-align: center;
+            font-family: Trebuchet MS, sans-serif;
+        }
+        .background{
+            background:#922B21;
+            margin-bottom: 10px;
+            margin-top:10px;
+        }
+    
+    </style>
+</head>
+<body class="container">
+    <div class="row p-3 mb-6 text-light background">
+        <div class="col-sm-10 main">AvTar's </div> 
+    </div>   
+            
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-6">
+            <h2 class="head">Time to Register</h2>
+        </div>
+        <div class="col-sm-5">
+            <h2 class="head">Ready to Login</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+        {% if messages %}
+        
+        {% for message in messages %}
+        <div class="error container">*{{ message }}</div>
+        {% endfor %}
+        
+        {% endif %}
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-6">
+            <form action="register" method='POST'>
+                    
+                {%csrf_token%}
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" name="first_name" placeholder="First name" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" name="last_name" placeholder="Last name" required>
+                    </div>
+                </div>
+                
+                <div class="form-row"> 
+                    <div class="form-group col-md-8">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="email" placeholder="Email" required>
+                    </div>
+                </div>
+                <div class="form-row"> 
+                    <div class="form-group col-md-8">
+                        <label>Birthday</label>
+                        <input type="date" class="form-control" name="birthday" placeholder="Birthday" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-8">
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Password" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-8">
+                        <label>Confirm Password</label>
+                        <input type="password" class="form-control" name= "cpassword" placeholder="Confirm Password" required>
+                    </div>
+                </div>
+                                                        
+                <button class="btn btn-success">Register</button>
+            </form>
+        </div>
+        
+        <div class="col-sm-5">
+            
+            <form action="login" method='POST'>
+                {% csrf_token %} 
+                
+                <div class="form-row"> 
+                    <div class="form-group col-md-8">
+                        <label>Email</label>
+                        <input type="email" name="emaill" class="form-control" placeholder="Email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-8">
+                        <label>Password</label>
+                        <input type="password" name="passwordl" class="form-control" placeholder="Password" required>
+                    </div>
+                </div>                                              
+                <button class="btn btn-info">Login</button>   
+            </form>
+        </div> 
+
+    </div>  
+    <div class="row p-3 mb-6 text-light background">
+    </div>
+</body>
+</html>

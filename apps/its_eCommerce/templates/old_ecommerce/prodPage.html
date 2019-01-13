@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    
+    <title>Product</title>
+    <script>
+          
+            
+    fro
+    </script>
+    <style>
+        .background{
+            background:#922B21;
+            margin-bottom: 10px;
+            margin-top:10px;
+        }
+        .main{
+          
+            font-size: 35px;
+            font-family: Trebuchet MS, sans-serif;
+        
+        }
+        .shop{
+            font-size: 15px;
+            font-family: Trebuchet MS, sans-serif;
+        }
+        .height{
+          height:500px;
+          width:98%;
+        }
+        .cart{
+            height:20px;
+            width:20px;
+        }
+        .size{
+          height:35px;
+          width:3   5px;
+     
+        }
+        .margin{
+          margin-left:47%;
+        }
+        .searchBar input{
+            width:160px;
+        }
+        .topm{
+            margin-top:7px;
+        }
+        .img{
+            height: 300px;
+            
+        }
+        .head{
+            padding:10px;
+            color:rgb(224, 91, 39);
+            font-size: 20px;
+            
+        }
+        .font{
+            font-size: 30px;
+            font-weight: bold;
+        }
+            
+            
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row p-3 mb-6 text-light background">
+            <div class="col-sm-9 main">AvTar's </div> 
+            {%if user == ''%}
+                <div class="col-sm-1 shop">My Cart <a href="/cart"><img class="cart" src="{% static "/images/front/cart.png" %}"></a></div>
+                <div class="col-sm-2 topm"><a href="/register" class="btn btn-outline-light">Sign In/Up</a></div>
+            {%else%}
+                <div class="col-sm-1 shop">My Cart <a href="/cart"><img class="cart" src="{% static "/images/front/cart.png" %}"></a></div>
+                <div class="col-sm-1 topm"><a href="/logout" class="btn btn-light">Sign Out</a></div>
+            {%endif%}
+        </div>
+   
+        <div class="row">
+            
+            <div class="col-sm text-center head font">{{product.name|title }}</div>
+        </div> 
+        <div class="row">  
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4"><img src="{% static product.link %}" class="img img-thumbnail img-fluid"></div>
+            <div class="col-sm-4">
+                <div class="text-center head">{{product.description|title}} : ${{product.price}}</div>
+                <hr>
+                <div class="text-center">
+                {%if count == 'true' %}
+                <span><a href="/cart?id={{product.id}}" class="btn btn-success">Go to Cart</a></span>
+                {%endif%}
+                {%if count == 'false'%}
+                <span><a href="/add?id={{product.id}}" class="btn btn-dark">Add to Cart</a></span>
+                {%endif%}
+                <span><a href="/buy?id={{product.id}}" class="btn btn-warning">Buy Now</a></span>        
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+        <div class="row p-3 mb-6 background"></div>
+    </div>
+</body>
+</html>

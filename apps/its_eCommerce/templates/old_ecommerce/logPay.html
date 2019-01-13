@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <title>Main</title>
+    <script>
+        function signIn(){
+            document.getElementById("ship").disabled = false;
+            // document.getElementById("bill").disabled = true;
+            // document.getElementById("pay").disabled = true;
+        }
+        
+    </script>
+    <style>
+        .error{
+            color:red;
+            font-style: italic;
+            /* text-align: center;
+            position: relative; */
+            font-weight: bold
+            
+        }
+       
+        .head{
+            padding:10px;
+            color:rgb(224, 91, 39);
+        }
+        .main{
+            font-size: 35px;
+            text-align: center;
+            font-family: Trebuchet MS, sans-serif;
+        }
+        .background{
+            background:#922B21;
+            margin-bottom: 10px;
+            margin-top:10px;
+        }
+    
+    </style>
+</head>
+<body class="container">
+    <div class="row p-3 mb-6 text-light background">
+        <div class="col-sm-12 main">AvTar's </div> 
+    </div>   
+    <div id="accordion">
+      
+        <div class="card">
+            <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                {% if user == '' %}
+                <button class="btn btn-info collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                {% else %}
+                <button class="btn btn-info collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" disabled>
+                {% endif %}
+                Sign In/Up
+                </button>
+            </h5>
+            </div>
+            {% if user == '' %}
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            {% else %}
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            {% endif %}
+            <div class="card-body">
+                <form action="login" method='POST'>
+                    {% csrf_token %} 
+                    <div class="row">
+                        {% if messages %}
+                        
+                        {% for message in messages %}
+                        <div class="error container">*{{ message }}</div>
+                        {% endfor %}
+                        
+                        {% endif %}
+                    </div>
+                    <div class="form-row"> 
+                        <div class="form-group col-md-4">
+                            <input type="email" name="emaill" class="form-control" placeholder="Email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <input type="password" name="passwordl" class="form-control" placeholder="Password" required>
+                        </div>
+                    </div> 
+                    <button class="btn btn-outline-info">Sign In</button>  
+                </form>
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
+                    New to Avtar's? Sign Up
+                    </button>
+                
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Register Me</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="register" method='POST'>
+                            <div class="modal-body">
+                            
+                                {%csrf_token%}
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                    <input type="text" class="form-control" name="first_name" placeholder="First name" required>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                    <input type="text" class="form-control" name="last_name" placeholder="Last name" required>
+                                    </div>
+                                </div>
+                                <div class="form-row"> 
+                                <div class="form-group col-md-8">
+                                    <input type="email" class="form-control" name="email" placeholder="Email" required>
+                                    </div>
+                                </div>
+                                <div class="form-row"> 
+                                    <div class="form-group col-md-8">
+                                        <input type="date" class="form-control" name="birthday" placeholder="Birthday" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-8">
+                                        <input type="password" class="form-control" name="password" placeholder="Password" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-8">
+                                        <input type="password" class="form-control" name= "cpassword" placeholder="Confirm Password" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Sign Me Up</button>
+                            </div>
+                        </form>
+                        
+                    </div>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+                {% if user == '' %}
+                <button id="ship" class="btn btn-warning collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" disabled>
+                {% else %}
+                <button id="ship" class="btn btn-warning collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                {% endif %}
+                Shipping Address
+                </button>
+            </h5>
+            </div>  
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+                <form action="shipadddress" method='POST'>
+                {% csrf_token %} 
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                    <input type="text" class="form-control" name="first_name" placeholder="First name" required>
+                    </div>
+                    <div class="form-group col-md-2">
+                    <input type="text" class="form-control" name="last_name" placeholder="Last name" required>
+                    </div>
+                </div>
+                <div class="form-row"> 
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" name="address" placeholder="Address 1" required>
+                    </div>
+                </div>
+                <div class="form-row"> 
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" name="address2" placeholder="Address 2">
+                    </div>
+                </div>
+                <div class="form-row"> 
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" name="city" placeholder="City" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <input type="text" class="form-control" name="state" placeholder="State" required>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <input type="text" class="form-control" name= "zipcode" placeholder="Zipcode" required>
+                    </div>
+                </div>
+                <button class="btn btn-outline-warning">Submit</button>   
+                </form>
+                
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+                <button id="bill" class="btn btn-danger collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" disabled>
+                Billing Address
+                </button>
+            </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+                <form action="billadddress" method='POST'>
+                {% csrf_token %}
+                <input type="checkbox" name="add" value="same" onclick="checkFunction()">Same as Shipping<br>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                    <input type="text" class="form-control" name="first_name" placeholder="First name" required>
+                    </div>
+                    <div class="form-group col-md-2">
+                    <input type="text" class="form-control" name="last_name" placeholder="Last name" required>
+                    </div>
+                </div>
+                <div class="form-row"> 
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" name="address" placeholder="Address 1" required>
+                    </div>
+                </div>
+                <div class="form-row"> 
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" name="address2" placeholder="Address 2">
+                    </div>
+                </div>
+                <div class="form-row"> 
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" name="city" placeholder="City" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <input type="text" class="form-control" name="state" placeholder="State" required>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <input type="text" class="form-control" name= "zipcode" placeholder="Zipcode" required>
+                    </div>
+                </div>
+                <button class="btn btn-outline-danger">Submit</button>   
+                </form>
+            </div> 
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h5 class="mb-0">
+                    <button id="pay" class="btn btn-success collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" disabled>
+                        Payment
+                    </button>
+                    </h5>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                    <div class="card-body">
+                    <form action="payment" method='POST'>
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <input type="text" class="form-control" name="number" placeholder="Card Number" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            <input type="password" class="form-control" name= "scode" placeholder="Security Code" required>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="text" class="form-control" name="expiration" placeholder="mm/yyyy" required>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-success">Pay</button> 
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>     
+    </div>  
+    <div class="row p-3 mb-6 text-light background">
+    </div>
+</body>
+</html>
